@@ -312,7 +312,7 @@
 };
 
 &i2c1 {
-    status = "okay";
+    //status = "okay";
 };
 
 &i2c2 {
@@ -431,8 +431,8 @@
 };
 
 &i2s0 {
-    sound-dai = <&pcm5102a>;
-    status = "disabled";
+    //sound-dai = <&pcm5102a>;
+    status = "okay";
 };
 
 &i2s2 {

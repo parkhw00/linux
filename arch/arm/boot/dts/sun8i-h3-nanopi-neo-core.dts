@@ -70,3 +70,11 @@
     /* eMMC is missing pull-ups */
     bias-pull-up;
 };
+
+&uart3 {
+    status = "disable";
+};
+
+&i2s0 {
+    status = "disable";
+};
