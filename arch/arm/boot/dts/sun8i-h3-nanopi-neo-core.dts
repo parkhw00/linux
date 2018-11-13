@@ -71,7 +71,23 @@
     bias-pull-up;
 };
 
+&uart1 {
+    status = "disable";
+};
+
+&uart2 {
+    status = "disable";
+};
+
 &uart3 {
+    status = "disable";
+};
+
+&spi0 {
+    status = "disable";
+};
+
+&i2c0 {
     status = "disable";
 };
 
