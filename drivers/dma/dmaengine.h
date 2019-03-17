@@ -129,6 +129,7 @@ dmaengine_desc_callback_invoke(struct dmaengine_desc_callback *cb,
 		.residue = 0
 	};
 
+printk (KERN_DEBUG "%s.%d cb_res %pF(), cb %pF\n", __func__, __LINE__, cb->callback_result, cb->callback);
 	if (cb->callback_result) {
 		if (!result)
 			result = &dummy_result;

@@ -1928,6 +1928,7 @@ static int dapm_power_widgets(struct snd_soc_card *card, int event)
 
 	trace_snd_soc_dapm_walk_done(card);
 
+	printk (KERN_DEBUG "%s.%d pre..\n", __func__, __LINE__);
 	/* Run card bias changes at first */
 	dapm_pre_sequence_async(&card->dapm, 0);
 	/* Run other bias changes in parallel */
@@ -1963,6 +1964,7 @@ static int dapm_power_widgets(struct snd_soc_card *card, int event)
 	async_synchronize_full_domain(&async_domain);
 	/* Run card bias changes at last */
 	dapm_post_sequence_async(&card->dapm, 0);
+	printk (KERN_DEBUG "%s.%d post..\n", __func__, __LINE__);
 
 	/* do we need to notify any clients that DAPM event is complete */
 	list_for_each_entry(d, &card->dapm_list, list) {

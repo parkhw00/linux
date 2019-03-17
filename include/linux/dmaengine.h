@@ -867,6 +867,7 @@ static inline struct dma_async_tx_descriptor *dmaengine_prep_dma_cyclic(
 	if (!chan || !chan->device || !chan->device->device_prep_dma_cyclic)
 		return NULL;
 
+printk (KERN_DEBUG "%s.%d chan->device->device_prep_dma_cyclic %pF\n", __func__, __LINE__, chan->device->device_prep_dma_cyclic);
 	return chan->device->device_prep_dma_cyclic(chan, buf_addr, buf_len,
 						period_len, dir, flags);
 }

@@ -194,6 +194,7 @@ int snd_dmaengine_pcm_trigger(struct snd_pcm_substream *substream, int cmd)
 	struct snd_pcm_runtime *runtime = substream->runtime;
 	int ret;
 
+printk (KERN_DEBUG "%s.%d cmd %d\n", __func__, __LINE__, cmd);
 	switch (cmd) {
 	case SNDRV_PCM_TRIGGER_START:
 		ret = dmaengine_pcm_prepare_and_submit(substream);
@@ -216,6 +217,7 @@ int snd_dmaengine_pcm_trigger(struct snd_pcm_substream *substream, int cmd)
 		break;
 	case SNDRV_PCM_TRIGGER_STOP:
 		dmaengine_terminate_async(prtd->dma_chan);
+printk (KERN_DEBUG "%s.%d cmd %d. stop done.\n", __func__, __LINE__, cmd);
 		break;
 	default:
 		return -EINVAL;

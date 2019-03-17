@@ -113,6 +113,7 @@ static void async_run_entry_fn(struct work_struct *work)
 	unsigned long flags;
 	ktime_t uninitialized_var(calltime), delta, rettime;
 
+//printk (KERN_DEBUG "work %p, entry %p, ->func %pF\n", work, entry, entry->func);
 	/* 1) run (and print duration) */
 	if (initcall_debug && system_state < SYSTEM_RUNNING) {
 		pr_debug("calling  %lli_%pF @ %i\n",

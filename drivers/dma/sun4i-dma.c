@@ -444,6 +444,7 @@ generate_ndma_promise(struct dma_chan *chan, dma_addr_t src, dma_addr_t dest,
 	if (ret)
 		return NULL;
 
+printk ("%s.%d alloc\n", __func__, __LINE__);
 	promise = kzalloc(sizeof(*promise), GFP_NOWAIT);
 	if (!promise)
 		return NULL;
@@ -506,6 +507,7 @@ generate_ddma_promise(struct dma_chan *chan, dma_addr_t src, dma_addr_t dest,
 	struct sun4i_dma_promise *promise;
 	int ret;
 
+printk ("%s.%d alloc\n", __func__, __LINE__);
 	promise = kzalloc(sizeof(*promise), GFP_NOWAIT);
 	if (!promise)
 		return NULL;
@@ -559,6 +561,7 @@ static struct sun4i_dma_contract *generate_dma_contract(void)
 {
 	struct sun4i_dma_contract *contract;
 
+printk ("%s.%d alloc\n", __func__, __LINE__);
 	contract = kzalloc(sizeof(*contract), GFP_NOWAIT);
 	if (!contract)
 		return NULL;
@@ -601,6 +604,7 @@ static void sun4i_dma_free_contract(struct virt_dma_desc *vd)
 	struct sun4i_dma_contract *contract = to_sun4i_dma_contract(vd);
 	struct sun4i_dma_promise *promise, *tmp;
 
+printk ("%s.%d free\n", __func__, __LINE__);
 	/* Free all the demands and completed demands */
 	list_for_each_entry_safe(promise, tmp, &contract->demands, list)
 		kfree(promise);

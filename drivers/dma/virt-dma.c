@@ -101,11 +101,13 @@ static void vchan_complete(unsigned long arg)
 	}
 	spin_unlock_irq(&vc->lock);
 
+printk (KERN_DEBUG "%s.%d vd %p\n", __func__, __LINE__, vd);
 	dmaengine_desc_callback_invoke(&cb, NULL);
 
 	list_for_each_entry_safe(vd, _vd, &head, node) {
 		dmaengine_desc_get_callback(&vd->tx, &cb);
 
+printk (KERN_DEBUG "%s.%d list vd %p\n", __func__, __LINE__, vd);
 		list_del(&vd->node);
 		if (dmaengine_desc_test_reuse(&vd->tx))
 			list_add(&vd->node, &vc->desc_allocated);

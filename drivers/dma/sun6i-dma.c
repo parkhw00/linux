@@ -350,6 +350,7 @@ static void sun6i_dma_free_desc(struct virt_dma_desc *vd)
 		p_lli = p_next;
 	}
 
+printk (KERN_DEBUG "%s.%d free.. %p\n", __func__, __LINE__, txd);
 	kfree(txd);
 }
 
@@ -717,6 +718,7 @@ static struct dma_async_tx_descriptor *sun6i_dma_prep_dma_cyclic(
 	}
 
 	txd = kzalloc(sizeof(*txd), GFP_NOWAIT);
+printk (KERN_DEBUG "%s.%d alloc.. %p, vd %p\n", __func__, __LINE__, txd, &txd->vd);
 	if (!txd)
 		return NULL;
 
@@ -854,6 +856,7 @@ static int sun6i_dma_terminate_all(struct dma_chan *chan)
 		pchan->desc = NULL;
 		pchan->done = NULL;
 	}
+	vchan->vc.cyclic = NULL;
 
 	spin_unlock_irqrestore(&vchan->vc.lock, flags);
 
